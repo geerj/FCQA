@@ -1,0 +1,7 @@
+{
+  "dependencySets": [
+    "effectivity",
+    "digital-signature"
+  ],
+  "name": "ec-formbuilder"
+}
