@@ -2,7 +2,7 @@
 
 registerRouteData('ec-forms', [{
     stateName: 'inboxFormInstance',
-    url: '/inbox/{formInstanceId:[0-9A-Za-z-]+}?action&returnUrl'
+    url: '/inbox/{formInstanceId:[0-9A-Za-z-]+}?from&returnUrl'
 }, {
     stateName: 'inbox',
     url: '/inbox',
