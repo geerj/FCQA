@@ -1,45 +1,24 @@
 'use strict';
 
-registerRouteData('ec-formbuilder', [{
-    stateName: 'form.formBuilder',
-    url: '/builder?deactivate',
+registerRouteData('ec-forms', [{
+    stateName: 'inboxFormInstance',
+    url: '/inbox/{formInstanceId:[0-9A-Za-z-]+}?from&returnUrl'
+}, {
+    stateName: 'inbox',
+    url: '/inbox?activeTab',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit');
+        return permissionSvc.isPermittedAction('activeUser', 'userKey');
     }
 }, {
-    stateName: 'form',
-    url: '/form/{formId:[0-9A-Za-z-]+}',
+    stateName: 'index',
+    url: '/',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit') || permissionSvc.isPermittedAction('formInstances', 'send');
+        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit') || permissionSvc.isPermittedAction('formTemplates', 'send') || permissionSvc.isPermittedAction('formTemplates', 'archive') || permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit') || permissionSvc.isPermittedAction('packets', 'send') || permissionSvc.isPermittedAction('packets', 'archive');
     }
 }, {
-    stateName: 'form.formPreview',
-    url: '/preview?returnUrl',
+    stateName: 'send',
+    url: '/send/{type:[A-Za-z]+}/{id:[0-9A-Za-z-]+}',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'view') || permissionSvc.isPermittedAction('formTemplates', 'edit' || permissionSvc.isPermittedAction('formTemplates', 'create'));
-    }
-}, {
-    stateName: 'form.formSettings',
-    url: '/settings',
-    $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit');
-    }
-}, {
-    stateName: 'packet.packetBuilder',
-    url: '/builder',
-    $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit');
-    }
-}, {
-    stateName: 'packet',
-    url: '/packet/{packetId:[0-9A-Za-z-]+}',
-    $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit') || permissionSvc.isPermittedAction('packetInstances', 'send');
-    }
-}, {
-    stateName: 'packet.packetSettings',
-    url: '/settings',
-    $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit');
+        return permissionSvc.isPermittedAction('formTemplates', 'send') || permissionSvc.isPermittedAction('packets', 'send');
     }
 }]);
