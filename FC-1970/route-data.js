@@ -1,6 +1,9 @@
 'use strict';
 
 registerRouteData('ec-forms', [{
+    stateName: 'formTracking',
+    url: '//form-tracking'
+}, {
     stateName: 'inboxFormInstance',
     url: '/inbox/{formInstanceId:[0-9A-Za-z-]+}?from&returnUrl'
 }, {
