@@ -1,6 +1,12 @@
 {
   "dependencySets": [
-    "form-date"
+    "employee-assignment",
+    "effectivity",
+    "job-type",
+    "form-date",
+    "digital-signature",
+    "employee-profile",
+    "fc-common"
   ],
-  "name": "ec-forms-tracking"
+  "name": "ec-forms"
 }
