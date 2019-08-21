@@ -8,5 +8,6 @@
     "employee-profile",
     "fc-common"
   ],
+  "fluidImports": [],
   "name": "ec-forms"
 }
