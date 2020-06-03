@@ -1,9 +1,13 @@
 {
   "dependencySets": [
+    "employee-assignment",
+    "job-type",
     "effectivity",
     "credentials",
-    "fc-common"
+    "employee-profile",
+    "fc-common",
+    "ui-tour"
   ],
   "fluidImports": [],
-  "name": "ec-settings"
+  "name": "ec-employee"
 }
