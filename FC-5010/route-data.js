@@ -1,93 +1,96 @@
 'use strict';
 
-registerRouteData('ec-forms', [{
-    stateName: 'formBuilder.builder',
-    url: '/builder?deactivate',
+registerRouteData('ec-employee', [{
+    stateName: 'employeeRecord.credentials',
+    url: '/credentials',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit');
+        return permissionSvc.isPermittedAction('employees', 'view');
     }
 }, {
-    stateName: 'formBuilder',
-    url: '/form-builder/{formId:[0-9A-Za-z-]+}',
+    stateName: 'employeeRecord.emergency',
+    url: '/emergency{action:.*}',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit') || permissionSvc.isPermittedAction('formInstances', 'send');
+        return permissionSvc.isPermittedAction('employees', 'edit') || permissionSvc.isPermittedAction('employees', 'view');
     }
 }, {
-    stateName: 'formBuilder.overlayBuilder',
-    url: '/overlay-builder',
+    stateName: 'employeeRecord',
+    url: '/record/{employeeId:[0-9A-Za-z-]+}',
     $permissions: function $permissions(permissionSvc) {
-        return !!permissionSvc.permittedActions.activeUser.idmAdministrator || !!permissionSvc.permittedActions.formTemplates.buildOverlay;
+        return permissionSvc.isPermittedAction('employees', 'view');
     }
 }, {
-    stateName: 'formBuilder.preview',
-    url: '/preview?returnTo&showPDFoverlay',
+    stateName: 'employeeRecord.employment',
+    url: '/employment',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'view') || permissionSvc.isPermittedAction('formTemplates', 'edit' || permissionSvc.isPermittedAction('formTemplates', 'create'));
+        return permissionSvc.isPermittedAction('employees', 'edit') || permissionSvc.isPermittedAction('employees', 'view');
     }
 }, {
-    stateName: 'formBuilder.settings',
-    url: '/settings',
+    stateName: 'employeeRecord.medical',
+    url: '/medical',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit');
+        return permissionSvc.isPermittedAction('employees', 'edit') || permissionSvc.isPermittedAction('employees', 'view');
     }
 }, {
-    stateName: 'formInstance',
-    url: '/form-instance/{formInstanceId:[0-9A-Za-z-]+}?from&returnUrl&target'
-}, {
-    stateName: 'formTemplates',
-    url: '/form-templates',
+    stateName: 'employeeRecord.personal',
+    url: '/personal{action:.*}',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit') || permissionSvc.isPermittedAction('formTemplates', 'send') || permissionSvc.isPermittedAction('formTemplates', 'archive') || permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit') || permissionSvc.isPermittedAction('packets', 'send') || permissionSvc.isPermittedAction('packets', 'archive');
+        return permissionSvc.isPermittedAction('employees', 'edit') || permissionSvc.isPermittedAction('employees', 'view');
     }
 }, {
-    stateName: 'formTracking',
-    url: '/form-tracking',
+    stateName: 'employeeRecord.personnel',
+    url: '/personnel',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formInstances', 'track');
-    }
-}, {
-    stateName: 'myFormsFormInstance',
-    url: '/form-instance/{formInstanceId:[0-9A-Za-z-]+}?from&returnUrl'
-}, {
-    stateName: 'inbox',
-    url: '/inbox?activeTab',
-    $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('activeUser', 'userKey');
+        return permissionSvc.isPermittedAction('employees', 'edit') || permissionSvc.isPermittedAction('employees', 'view');
     }
 }, {
     stateName: 'index',
     url: '/',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'create') || permissionSvc.isPermittedAction('formTemplates', 'edit') || permissionSvc.isPermittedAction('formTemplates', 'send') || permissionSvc.isPermittedAction('formTemplates', 'archive') || permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit') || permissionSvc.isPermittedAction('packets', 'send') || permissionSvc.isPermittedAction('packets', 'archive');
+        return permissionSvc.isPermittedAction('bundle', 'viewothers');
     }
 }, {
-    stateName: 'my-forms',
-    url: '/my-forms?activeTab',
+    stateName: 'myProfile',
+    url: '/my-profile',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('activeUser', 'userKey');
+        return !permissionSvc.isPermittedAction('bundle', 'viewothers');
     }
 }, {
-    stateName: 'packetBuilder.Builder',
-    url: '/builder',
+    stateName: 'reports.assignments',
+    url: '/assignments',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit');
+        return permissionSvc.isPermittedAction('assignmentReports', 'view');
     }
 }, {
-    stateName: 'packetBuilder',
-    url: '/packet-builder/{packetId:[0-9A-Za-z-]+}',
+    stateName: 'reports.assignments.report',
+    url: '/report'
+}, {
+    stateName: 'reports.assignments.settings',
+    url: '/settings/:templateId',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit') || permissionSvc.isPermittedAction('packetInstances', 'send');
+        return permissionSvc.isPermittedAction('exportTemplates', 'view');
     }
 }, {
-    stateName: 'packetBuilder.Settings',
-    url: '/packet-builder/settings',
+    stateName: 'reports.credentials',
+    url: '/credentials',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('packets', 'create') || permissionSvc.isPermittedAction('packets', 'edit');
+        return permissionSvc.isPermittedAction('employeecredentials', 'viewreports');
     }
 }, {
-    stateName: 'send',
-    url: '/send/{type:[A-Za-z]+}/{id:[0-9A-Za-z-]+}',
+    stateName: 'reports.demographic',
+    url: '/demographic',
     $permissions: function $permissions(permissionSvc) {
-        return permissionSvc.isPermittedAction('formTemplates', 'send') || permissionSvc.isPermittedAction('packets', 'send');
+        return permissionSvc.isPermittedAction('employees', 'viewreports');
     }
+}, {
+    stateName: 'reports.demographic.report',
+    url: '/report'
+}, {
+    stateName: 'reports.demographic.settings',
+    url: '/settings/:templateId',
+    $permissions: function $permissions(permissionSvc) {
+        return permissionSvc.isPermittedAction('exportTemplates', 'view');
+    }
+}, {
+    stateName: 'reports',
+    url: '/reports'
 }]);
